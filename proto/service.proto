@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package proto;
+
+// Send message service definition
+
+option go_package = "github.com/mikeletux/grpc_test/proto";
+
+import "google/protobuf/timestamp.proto";
+
+service Communication {
+    rpc SendMessage (Text) returns (Ok);
+}
+
+message Text {
+    string text = 1;
+    google.protobuf.Timestamp timestamp = 2;
+    
+    enum Urgency {
+        LOW = 0;
+        MEDIUM = 1;
+        HIGH = 2;
+        CRITICAL = 3;
+    }
+}
+
+message Ok {
+    string ok = 1;
+}
+
